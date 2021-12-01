@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class BinarySearch {
     public static void main(String[] args) {
-        int[] arr={1,12,43,43,46,56,57};
-        int search = search(arr, 0, arr.length - 1, 43);
+        int[] arr={1,12,43,46,56,57};
+        int search = searchNoRecur(arr, 43);
         System.out.println(search);
         List<Integer> integers = search2(arr, 0, arr.length - 1, 43);
         integers.forEach(System.out::print);
@@ -66,6 +66,23 @@ public class BinarySearch {
         }else {
             return search2(arr,mid+1,right,temp);
         }
+    }
+
+    private static int searchNoRecur(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (target == arr[mid]) {
+                return mid;
+            } else if (target > arr[mid]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return -1;
     }
 
 
